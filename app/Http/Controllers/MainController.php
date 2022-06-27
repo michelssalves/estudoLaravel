@@ -8,6 +8,6 @@ class MainController extends Controller
 {
     public function main() {
 
-        return view('site.main');
+        return view('site.main', ['titulo' => 'Main']);
     }
 }
