@@ -27,7 +27,7 @@ class AlterProviders extends Migration
     public function down()
     {
         Schema::table('providers', function (Blueprint $table) {
-            $table->dropColumn('uf');
+            //$table->dropColumn('uf');
             $table->dropColumn(['uf', 'email']);
         });
     }
