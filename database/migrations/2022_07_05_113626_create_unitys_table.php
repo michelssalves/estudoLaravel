@@ -17,7 +17,6 @@ class CreateUnitysTable extends Migration
             $table->id();
             $table->string('unity', 5);
             $table->string('description', 30);
-            $table->id();
             $table->timestamps();
         });
 
