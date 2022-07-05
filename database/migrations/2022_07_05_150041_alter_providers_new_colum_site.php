@@ -13,8 +13,8 @@ class AlterProvidersNewColumSite extends Migration
      */
     public function up()
     {
-        Schema::create('providers', function(Blueprint $table){
-            $table->string('site', 150)->after('nome')->nullable();
+        Schema::table('providers', function(Blueprint $table){
+            $table->string('site', 150)->after('name');
 
        });
     }
@@ -26,7 +26,7 @@ class AlterProvidersNewColumSite extends Migration
      */
     public function down()
     {
-        Schema::create('providers', function(Blueprint $table){
+        Schema::table('providers', function(Blueprint $table){
             $table->dropColumn('site');
 
        });
