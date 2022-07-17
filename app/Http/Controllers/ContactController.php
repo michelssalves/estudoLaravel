@@ -6,10 +6,15 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-    public function contact(){
-
-        var_dump($_POST);
+    public function contact(Request $request){
+        echo '<pre>';
+        print_r($request->all());
+        echo '</pre>';
+        
         return view('site.contact', ['titulo' => 'Contact']);
+
+
+
     }
 }
 
