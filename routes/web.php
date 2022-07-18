@@ -28,8 +28,8 @@ Route::get('/', "MainController@main")->name('site.index');
 Route::get('/login', function(){return 'Login';})->name('site.login');
 Route::get('/about', "AboutController@about")->name('site.about');
 
-Route::get('/contact', "ContactController@contact")->name('site.contact');
-Route::POST('/contact', "ContactController@contact")->name('site.contact');
+Route::GET('/contact', "ContactController@contact")->name('site.contact');
+Route::POST('/contact', "ContactController@save")->name('site.contact');
 
 Route::prefix('/app')->group(function(){
 

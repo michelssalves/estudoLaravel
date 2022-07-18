@@ -3,17 +3,44 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\SiteContact;
+use App\ReasonForContact;
 
 class ContactController extends Controller
 {
-    public function contact(Request $request){
-        echo '<pre>';
-        print_r($request->all());
-        echo '</pre>';
-        
-        return view('site.contact', ['titulo' => 'Contact']);
+    public function contact(Request $request){    
+
+        $reason_for_contact = ReasonForContact::all();
+        /*
+        $contact = new SiteContact();
+        $contact->name = $request->input('name');
+        $contact->phone = $request->input('phone');
+        $contact->email = $request->input('email');
+        $contact->reason = $request->input('reason');
+        $contact->message = $request->input('message');
+        $contact->save();
+        print_r($contact->getAttributes());
+
+        $contact = new SiteContact();
+        $contact->create($request->all());*/
+
+        return view('site.contact', ['titulo' => 'Contact', 'reason_for_contact' => $reason_for_contact]);
+
+    }
+
+    public function save(Request $request){
 
 
+
+        $request->validate([
+           'name' => 'required|min:3|max:40',
+           'phone' => 'required',
+           'email' => 'required',
+           'reason' => 'required',
+           'message' => 'required|max:2000'
+        ]);
+
+        SiteContact::create($request->all());
 
     }
 }

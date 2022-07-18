@@ -11,7 +11,7 @@
 
     <div class="informacao-pagina">
         <div class="contato-principal">
-            @component('site.layouts._components.form_contact', ['class' => 'borda-preta'])
+            @component('site.layouts._components.form_contact', ['class' => 'borda-preta', 'reason_for_contact' => $reason_for_contact])
                 <p>Your registration will be avaluated by our team</p>
                 <p>Within 48 hour we will have a response to your request</p>
             @endcomponent
@@ -37,4 +37,6 @@
         <img src="{{ asset('img/mapa.png')}}">
     </div>
 </div>
+
+
 @endsection
