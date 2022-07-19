@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\SiteContact;
+use App\ContactSite;
 use App\ReasonForContact;
 
 class ContactController extends Controller
@@ -35,13 +35,13 @@ class ContactController extends Controller
         $request->validate([
            'name' => 'required|min:3|max:40',
            'phone' => 'required',
-           'email' => 'required',
-           'reason' => 'required',
+           'email' => 'email',
+           'reason_contact_id' => 'required',
            'message' => 'required|max:2000'
         ]);
 
-        SiteContact::create($request->all());
-
+        ContactSite::create($request->all());
+        return redirect()->route('site.index');
     }
 }
 
