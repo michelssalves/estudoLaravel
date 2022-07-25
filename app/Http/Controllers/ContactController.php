@@ -30,16 +30,23 @@ class ContactController extends Controller
 
     public function save(Request $request){
 
+        $rules = [
+            'name' => 'required|min:3|max:40|unique:contact_sites',
+            'phone' => 'required',
+            'email' => 'email',
+            'reason_contact_id' => 'required',
+            'message' => 'required|max:2000'
+        ];
+        $feedback = [
+            'name.min' => 'The name field must have at least three characters',
+            'name.max' => 'The name field must have a maximum of forty characters',
+            'name.unique' => 'The registred name already exists ',
+            'email.email' => 'The email provided is not valid',
+            'message.max' => 'The message field must have a maximum of 2000 characters',
+            'required' => 'The :attribute field must have filled'
+        ];
 
-
-        $request->validate([
-           'name' => 'required|min:3|max:40',
-           'phone' => 'required',
-           'email' => 'email',
-           'reason_contact_id' => 'required',
-           'message' => 'required|max:2000'
-        ]);
-
+        $request->validate($rules, $feedback);
         ContactSite::create($request->all());
         return redirect()->route('site.index');
     }

@@ -1,5 +1,7 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,7 +26,8 @@ Route::get('/contact/{name}/{idade}', function(string $name, int $idade) {
 echo "My name is $name and I have  $idade  years old";
 });
 */
-Route::get('/', "MainController@main")->name('site.index');
+Route::get('/', 'MainController@main')
+    ->name('site.index');
 Route::get('/login', function(){return 'Login';})->name('site.login');
 Route::get('/about', "AboutController@about")->name('site.about');
 
