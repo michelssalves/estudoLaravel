@@ -28,7 +28,8 @@ echo "My name is $name and I have  $idade  years old";
 */
 Route::get('/', 'MainController@main')
     ->name('site.index');
-Route::get('/login', function(){return 'Login';})->name('site.login');
+Route::get('/login/{error?}', 'LoginController@index')->name('site.login');
+Route::post('/login', 'LoginController@authenticate')->name('site.login');
 Route::get('/about', "AboutController@about")->name('site.about');
 
 Route::GET('/contact', "ContactController@contact")->name('site.contact');
