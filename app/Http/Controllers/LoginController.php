@@ -16,6 +16,12 @@ class LoginController extends Controller
             $error = 'User or password incorrect';
         }
 
+        
+        if ($request->get('error') == 2){
+
+            $error = 'Login is required to access the page';
+        }
+
         return view('site.login', ['titulo' => 'Login', 'error' => $error]);
 
     }
@@ -43,7 +49,13 @@ class LoginController extends Controller
 
 
         if(isset($user->name)){
-            echo 'existe';
+
+            session_start();
+            $_SESSION['name'] = $user->name;
+            $_SESSION['email'] = $user->email;
+
+            return redirect()->route('app.customers');
+
         }else{
             return redirect()->route('site.login', ['error' => 1]);
         }

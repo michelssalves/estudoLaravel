@@ -35,10 +35,9 @@ Route::get('/about', "AboutController@about")->name('site.about');
 Route::GET('/contact', "ContactController@contact")->name('site.contact');
 Route::POST('/contact', "ContactController@save")->name('site.contact');
 
-Route::prefix('/app')->group(function(){
-
+Route::middleware('authentication:default, visitor,p3,p4')->prefix('/app')->group(function(){
     Route::get('/customers', function(){return 'Customers';})->name('app.customers');
-    Route::get('/providers',   'ProvidersController@index')->name('app.providers');
+    Route::get('/providers', 'ProvidersController@index')->name('app.providers');
     Route::get('/products', function(){return 'Products';})->name('app.products');
 
 });
