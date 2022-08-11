@@ -13,7 +13,7 @@ class AuthenticationMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next, $authenticate_method, $profile)
+    public function handle($request, Closure $next)
     {
         if (true) {
             return $next($request);

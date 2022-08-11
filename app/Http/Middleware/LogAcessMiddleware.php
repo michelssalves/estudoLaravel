@@ -19,6 +19,7 @@ class LogAcessMiddleware
         $ip = $request->server->get('REMOTE_ADDR');
         $route = $request->getRequestUri();
         LogAcess::create(['log' => "O IP $ip requisitou a rota $route"]);
-        return $next($request);
+        $response = $next($request);
+        return $response;
     }
 }

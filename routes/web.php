@@ -26,8 +26,7 @@ Route::get('/contact/{name}/{idade}', function(string $name, int $idade) {
 echo "My name is $name and I have  $idade  years old";
 });
 */
-Route::get('/', 'MainController@main')
-    ->name('site.index');
+Route::get('/', 'MainController@main')->name('site.index');
 Route::get('/login/{error?}', 'LoginController@index')->name('site.login');
 Route::post('/login', 'LoginController@authenticate')->name('site.login');
 Route::get('/about', "AboutController@about")->name('site.about');
@@ -35,10 +34,12 @@ Route::get('/about', "AboutController@about")->name('site.about');
 Route::GET('/contact', "ContactController@contact")->name('site.contact');
 Route::POST('/contact', "ContactController@save")->name('site.contact');
 
-Route::middleware('authentication:default, visitor,p3,p4')->prefix('/app')->group(function(){
-    Route::get('/customers', function(){return 'Customers';})->name('app.customers');
+Route::middleware('authentication')->prefix('/app')->group(function(){
+    Route::get('/home', 'HomeController@index')->name('app.home');
+    Route::get('/logout', 'LoginController@logout')->name('app.logout');
+    Route::get('/customers', 'CustomersController@index')->name('app.customers');
     Route::get('/providers', 'ProvidersController@index')->name('app.providers');
-    Route::get('/products', function(){return 'Products';})->name('app.products');
+    Route::get('/products', 'ProductsController@index')->name('app.products');
 
 });
 
