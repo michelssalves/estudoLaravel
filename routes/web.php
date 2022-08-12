@@ -38,8 +38,12 @@ Route::middleware('authentication')->prefix('/app')->group(function(){
     Route::get('/home', 'HomeController@index')->name('app.home');
     Route::get('/logout', 'LoginController@logout')->name('app.logout');
     Route::get('/customers', 'CustomersController@index')->name('app.customers');
-    Route::get('/providers', 'ProvidersController@index')->name('app.providers');
     Route::get('/products', 'ProductsController@index')->name('app.products');
+
+    Route::get('/providers', 'ProvidersController@index')->name('app.providers');
+    Route::post('/providers/list', 'ProvidersController@list')->name('app.providers.list');
+    Route::get('/providers/add', 'ProvidersController@add')->name('app.providers.add');
+    Route::post('/providers/add', 'ProvidersController@add')->name('app.providers.add');
 
 });
 
